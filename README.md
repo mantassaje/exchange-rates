@@ -9,8 +9,11 @@ ExchangeRatesController returns data to client. All calculations are done in API
 ## API
 
 API uses framework .NET Core 2.1
+
 It is written with Visual studio 2017
+
 To launch API go to `\exchange-rates\Api` and open Api.sln
+
 Build & Run the API project
 
 ## Client
