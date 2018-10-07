@@ -22,6 +22,7 @@ class DatePickerExchangeRatesFetcher extends React.Component {
     }
   
     loadData = (date) => {
+        if(!date) return;
         this.setState({
             date: date
         });

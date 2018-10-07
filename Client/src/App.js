@@ -6,6 +6,7 @@ import moment from 'moment';
 
 class App extends Component {
   constructor(props) {
+    document.title = "Exchange Rates for LTL";
     super(props);
     this.state = {
       error: null,
@@ -16,11 +17,10 @@ class App extends Component {
 
   render() {
     const { exchangeRates } = this.state;
-    console.dir(exchangeRates);
     return (
       <div className="app">
         <h1>Exchange Rates of LTL</h1>
-        <DatePickerExchangeRatesFetcher startValue={moment("2014-05-05")} onDataLoaded={this.onDataLoaded} onError={this.onError}></DatePickerExchangeRatesFetcher>
+        <DatePickerExchangeRatesFetcher startValue={moment("2014-12-05")} onDataLoaded={this.onDataLoaded} onError={this.onError}></DatePickerExchangeRatesFetcher>
         {this.renderError()}
         <ExchangeRatesTable exchangeRates={exchangeRates}></ExchangeRatesTable>
       </div>
@@ -35,7 +35,6 @@ class App extends Component {
   }
 
   onDataLoaded = (exchangeRates) => {
-    console.dir("onDataLoaded");
     this.setState({
       exchangeRates: exchangeRates,
       error: null,
@@ -43,7 +42,6 @@ class App extends Component {
   }
 
   onError = (error) => {
-    console.dir("onError");
     this.setState({
       exchangeRates: [],
       error: error,

@@ -49,6 +49,10 @@ class ExchangeRatesTable extends React.Component {
       return(
         <td>-</td>
       );
+    }else if(item.rateDifference > 0){
+      return(
+        <td>+{item.rateDifference} LTL</td>
+      );
     }else{
       return(
         <td>{item.rateDifference} LTL</td>
