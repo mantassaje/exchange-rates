@@ -1,0 +1,48 @@
+.app {
+  width: 70%;
+  margin:0 auto;
+}
+@media screen and (max-width: 1000px) {
+  .app {
+    width: 100%;
+  }
+}
+
+.tableInfo{
+  padding: 4px 16px 4px 16px;
+  color: #777777;
+  font-size: 12px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th{
+  padding: 4px 16px 4px 16px;
+  text-align: left;
+}
+
+tr:nth-child(even), th {
+  background-color: #f2f2f2;
+}
+
+span{
+  color: #777777;
+  font-size: 12px;
+}
+
+label{
+  display: inline-block;
+}
+
+.datePickerBlock{
+  margin-bottom: 32px;
+  margin-top: 32px;
+}
+
+.datePicker{
+  margin-left: 32px;
+  display: inline-block;
+}

@@ -13,11 +13,11 @@ namespace Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ExchangeRateController : ControllerBase
+    public class ExchangeRatesController : ControllerBase
     {
         private IExchangeRateService exchangeRateService;
 
-        public ExchangeRateController(IExchangeRateService exchangeRateService)
+        public ExchangeRatesController(IExchangeRateService exchangeRateService)
         {
             this.exchangeRateService = exchangeRateService;
         }
@@ -27,7 +27,7 @@ namespace Api.Controllers
         {
             if (date >= new DateTime(2015, 01, 01))
             {
-                return BadRequest("Dates up to the end of the year 2014 are allowed");
+                return BadRequest(new ErrorResponse("Only dates up to the end of the year 2014 are allowed"));
             }
             else
             {

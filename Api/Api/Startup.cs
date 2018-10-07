@@ -26,6 +26,7 @@ namespace Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMemoryCache();
+            services.AddCors();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddTransient<IExchangeRateService, ExchangeRateService>();
         }
@@ -36,7 +37,7 @@ namespace Api
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseCors(builder => builder.WithOrigins("http://localhost:3000"));
             app.UseMvc();
         }
     }

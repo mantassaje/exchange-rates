@@ -7,22 +7,30 @@ namespace Api.Models
 {
     public class ExchangeRateDifference
     {
-        public ExchangeRate BaseExchangeRate { get; }
-        public ExchangeRate OlderExchangeRate { get; }
+        private ExchangeRate BaseExchangeRate { get; }
+        private ExchangeRate OlderExchangeRate { get; }
 
-        //Currently I assume that rate is of currency with specified quantity.
-        //Normaly I would disccused with someone to make sure if that is the case.
+        /// <summary>
+        /// I assume that rate is of currency with specified quantity.
+        /// </summary>
         public decimal RateDifference { get
             {
                 return BaseExchangeRate.Rate / BaseExchangeRate.Quantity - OlderExchangeRate.Rate / OlderExchangeRate.Quantity;
             }
         }
+        public string Currency { get => BaseExchangeRate.Currency; }
+        public decimal BaseRate { get => BaseExchangeRate.Rate; }
+        public decimal OlderRate { get => OlderExchangeRate.Rate; }
+        public decimal Quantity { get => OlderExchangeRate.Quantity; }
+        public DateTime DateFrom { get => OlderExchangeRate.Date; }
+        public DateTime DateTo { get => BaseExchangeRate.Date; }
 
         public ExchangeRateDifference(ExchangeRate baseRate, ExchangeRate olderDayRate)
         {
             if (baseRate == null) new InvalidOperationException("Base rate can not be null");
             if (olderDayRate == null) new InvalidOperationException("Older rate can not be null");
             if (baseRate.Currency != olderDayRate.Currency) new InvalidOperationException("Base rate and older rate currencies don't match");
+            if (baseRate.Quantity != olderDayRate.Quantity) new InvalidOperationException("Quantities don't match");
             BaseExchangeRate = baseRate;
             OlderExchangeRate = olderDayRate;
         }
