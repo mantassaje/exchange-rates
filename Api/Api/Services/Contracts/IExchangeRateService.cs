@@ -10,5 +10,6 @@ namespace Api.Services.Contracts
     {
         Task<IEnumerable<ExchangeRate>> GetExchangeRatesCached(DateTime date);
         Task<IEnumerable<ExchangeRate>> GetExchangeRates(DateTime date);
+        Task<IEnumerable<ExchangeRateDifference>> GetExchangeRateDifferences(DateTime date);
     }
 }

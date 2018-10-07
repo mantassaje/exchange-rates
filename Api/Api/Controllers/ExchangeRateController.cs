@@ -22,18 +22,18 @@ namespace Api.Controllers
             this.exchangeRateService = exchangeRateService;
         }
 
-        [HttpGet("Test")]
-        public async Task<IEnumerable<ExchangeRate>> Test()
-        {
-            var rates = await exchangeRateService.GetExchangeRatesCached(DateTime.Now.AddYears(-7));
-            return rates;
-        }
-
         [HttpGet]
-        public async Task<IEnumerable<ExchangeRate>> Get(DateTime date)
+        public async Task<IActionResult> Get(DateTime date)
         {
-            var rates = await exchangeRateService.GetExchangeRatesCached(date);
-            return rates;
+            if (date >= new DateTime(2015, 01, 01))
+            {
+                return BadRequest("Dates up to the end of the year 2014 are allowed");
+            }
+            else
+            {
+                var rates = await exchangeRateService.GetExchangeRateDifferences(date);
+                return new OkObjectResult(rates);
+            }
         }
     }
 }
